@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+void soma(int *a, int *b, int *resultado) {
+    *resultado = *a + *b;
+}
+
+int main() {
+    int a = 5, b = 7, resultado;
+
+    soma(&a, &b, &resultado);
+
+    printf("Soma: %d\n", resultado);
+
+    return 0;
+}
