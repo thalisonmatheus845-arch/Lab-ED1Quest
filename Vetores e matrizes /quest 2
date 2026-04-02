@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int linhas, colunas;
+
+    printf("Digite o numero de linhas: ");
+    scanf("%d", &linhas);
+
+    printf("Digite o numero de colunas: ");
+    scanf("%d", &colunas);
+
+    int **mat = (int **) malloc(linhas * sizeof(int *));
+    for (int i = 0; i < linhas; i++) {
+        mat[i] = (int *) malloc(colunas * sizeof(int));
+    }
+
+    // leitura
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    // matriz original
+    printf("\nMatriz original:\n");
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+
+    // transposta
+    printf("\nMatriz transposta:\n");
+    for (int j = 0; j < colunas; j++) {
+        for (int i = 0; i < linhas; i++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+
+    // liberar memória
+    for (int i = 0; i < linhas; i++) {
+        free(mat[i]);
+    }
+    free(mat);
+
+    return 0;
+}
