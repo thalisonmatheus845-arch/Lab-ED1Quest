@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char nome[100];
+    float salario;
+    int id;
+    char cargo[50];
+} Funcionario;
+
+// a)
+void preencher(Funcionario *f) {
+    printf("Nome: ");
+    fgets(f->nome, 100, stdin);
+    f->nome[strcspn(f->nome, "\n")] = '\0';
+
+    printf("Salario: ");
+    scanf("%f", &f->salario);
+
+    printf("ID: ");
+    scanf("%d", &f->id);
+    getchar();
+
+    printf("Cargo: ");
+    fgets(f->cargo, 50, stdin);
+    f->cargo[strcspn(f->cargo, "\n")] = '\0';
+}
+
+// b)
+void imprimir(Funcionario *f) {
+    printf("\nNome: %s\n", f->nome);
+    printf("Salario: %.2f\n", f->salario);
+    printf("ID: %d\n", f->id);
+    printf("Cargo: %s\n", f->cargo);
+}
+
+// c)
+void alterarSalario(Funcionario *f) {
+    float novo;
+    printf("Novo salario: ");
+    scanf("%f", &novo);
+    f->salario = novo;
+}
+
+// d)
+void maiorMenor(Funcionario v[], int n) {
+    int maior = 0, menor = 0;
+
+    for (int i = 1; i < n; i++) {
+        if (v[i].salario > v[maior].salario)
+            maior = i;
+        if (v[i].salario < v[menor].salario)
+            menor = i;
+    }
+
+    printf("\nMaior salario:\nCargo: %s | Salario: %.2f\n", v[maior].cargo, v[maior].salario);
+
+    printf("\nMenor salario:\nCargo: %s | Salario: %.2f\n", v[menor].cargo, v[menor].salario);
+}
