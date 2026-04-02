@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nome[100];
+    int documento;
+    int idade;
+} Pessoa;
+
+// a)
+void preencherPessoa(Pessoa *p) {
+    printf("Nome: ");
+    fgets(p->nome, 100, stdin);
+    p->nome[strcspn(p->nome, "\n")] = '\0';
+
+    printf("Documento: ");
+    scanf("%d", &p->documento);
+
+    printf("Idade: ");
+    scanf("%d", &p->idade);
+    getchar();
+}
+
+// b)
+void imprimirPessoa(Pessoa *p) {
+    printf("\nNome: %s\n", p->nome);
+    printf("Documento: %d\n", p->documento);
+    printf("Idade: %d\n", p->idade);
+}
+
+// c)
+void atualizarIdade(Pessoa *p) {
+    int nova;
+    printf("Nova idade: ");
+    scanf("%d", &nova);
+    p->idade = nova;
+}
+
+// d)
+void maisVelhoNovo(Pessoa v[], int n) {
+    int maior = 0, menor = 0;
+
+    for (int i = 1; i < n; i++) {
+        if (v[i].idade > v[maior].idade)
+            maior = i;
+        if (v[i].idade < v[menor].idade)
+            menor = i;
+    }
+
+    printf("\nMais velho: %s (%d anos)\n", v[maior].nome, v[maior].idade);
+    printf("Mais novo: %s (%d anos)\n", v[menor].nome, v[menor].idade);
+}
